@@ -1,24 +1,14 @@
-import * as React from "react";
-import { View, Text } from "react-native";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-function HomeScreen() {
-  return (
-    <View className="flex-1 justify-center items-center bg-purple-800">
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
-
-const Stack = createNativeStackNavigator();
+import AppStack from "./AppStack";
+import AuthStack from "./AuthStack";
+import { useAuth } from "../contexts/Auth";
 
 export default function Router() {
+  const { authData } = useAuth();
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
+      {authData ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 }
