@@ -8,7 +8,7 @@ export default function Router() {
   const { authData } = useAuth();
   return (
     <NavigationContainer>
-      {authData ? <AppStack /> : <AuthStack />}
+      {true ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 }
